@@ -1,18 +1,22 @@
-'use client'
+'use client';
 
-import { useCallback } from 'react'
-import { loadSlim } from "@tsparticles/slim"
-import Particles from "@tsparticles/react"
-import type { Container, Engine } from "@tsparticles/engine"
+import { useCallback } from 'react';
+import { loadSlim } from '@tsparticles/slim';
+import Particles from '@tsparticles/react';
+import type { Container, Engine } from '@tsparticles/engine';
 
 export function ParticlesBackground() {
   const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSlim(engine)
-  }, [])
+    // Ensure the engine is correctly loaded
+    await loadSlim(engine);
+  }, []);
 
   const particlesLoaded = useCallback(async (container: Container | undefined) => {
-    await container?.refresh()
-  }, [])
+    // Refresh the container if it exists
+    if (container) {
+      await container.refresh();
+    }
+  }, []);
 
   return (
     <Particles
@@ -67,7 +71,6 @@ export function ParticlesBackground() {
           number: {
             density: {
               enable: true,
-              area: 800,
             },
             value: 80,
           },
@@ -88,13 +91,13 @@ export function ParticlesBackground() {
             options: {
               particles: {
                 number: {
-                  value: 40
-                }
-              }
-            }
-          }
-        ]
+                  value: 40,
+                },
+              },
+            },
+          },
+        ],
       }}
     />
-  )
+  );
 }
