@@ -53,7 +53,7 @@ export function Hero() {
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              Hi, I'm{' '}
+              Hi, I&apos;m{' '}
               <span className="text-primary">
                 <TypeAnimation
                   sequence={['Arun', 1000, 'a Developer', 1000, 'an Engineer', 1000]}

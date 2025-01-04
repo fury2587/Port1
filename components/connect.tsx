@@ -76,9 +76,9 @@ export function Connect() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Connect</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Let&apos;s Connect</h2>
           <p className="text-muted-foreground">
-            Choose your preferred platform to connect with me. I'm always excited to meet new people,
+            Choose your preferred platform to connect with me. I&apos;m always excited to meet new people,
             collaborate on projects, or just chat about technology.
           </p>
         </motion.div>

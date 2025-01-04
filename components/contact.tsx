@@ -39,7 +39,7 @@ export function Contact() {
               <CardHeader>
                 <CardTitle>Contact Me</CardTitle>
                 <CardDescription>
-                  Fill out the form below and I'll get back to you as soon as possible.
+                  Fill out the form below and I&apos;ll get back to you as soon as possible.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -73,7 +73,7 @@ export function Contact() {
             <div className="text-center md:text-left">
               <h3 className="text-2xl font-semibold mb-4">Connect With Me</h3>
               <p className="text-muted-foreground mb-6">
-                Feel free to reach out through any of these platforms. I'm always excited
+                Feel free to reach out through any of these platforms. I&apos;m always excited
                 to connect and discuss new opportunities.
               </p>
             </div>
