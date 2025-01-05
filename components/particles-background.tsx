@@ -1,101 +1,52 @@
-'use client';
+'use client'
 
-import { useCallback } from 'react';
-import { loadSlim } from '@tsparticles/slim';
-import { ISourceOptions, Engine } from 'tsparticles-engine';
-import { Particles } from 'react-tsparticles';
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 
 export function ParticlesBackground() {
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSlim(engine);
-  }, []);
+  const [particles, setParticles] = useState<JSX.Element[]>([])
 
-  const particlesLoaded = useCallback(async (container?: any) => {
-    await container?.refresh();
-  }, []);
+  useEffect(() => {
+    // Create random particles
+    const numberOfParticles = 50
+    const newParticles = []
 
-  const options: ISourceOptions = {
-    background: {
-      color: {
-        value: 'transparent',
-      },
-    },
-    fpsLimit: 120,
-    interactivity: {
-      events: {
-        onHover: {
-          enable: true,
-          mode: 'grab',
-        },
-      },
-      modes: {
-        grab: {
-          distance: 140,
-          links: {
-            opacity: 0.5,
-          },
-        },
-      },
-    },
-    particles: {
-      color: {
-        value: '#94a3b8',
-      },
-      links: {
-        color: '#94a3b8',
-        distance: 150,
-        enable: true,
-        opacity: 0.3,
-        width: 1,
-      },
-      move: {
-        direction: 'none',
-        enable: true,
-        outModes: {
-          default: 'bounce',
-        },
-        random: false,
-        speed: 1,
-        straight: false,
-      },
-      number: {
-        density: {
-          enable: true,
-        },
-        value: 80,
-      },
-      opacity: {
-        value: 0.3,
-      },
-      shape: {
-        type: 'circle',
-      },
-      size: {
-        value: { min: 1, max: 3 },
-      },
-    },
-    detectRetina: true,
-    responsive: [
-      {
-        maxWidth: 768,
-        options: {
-          particles: {
-            number: {
-              value: 40,
-            },
-          },
-        },
-      },
-    ],
-  };
+    for (let i = 0; i < numberOfParticles; i++) {
+      const x = Math.random() * 100 // Random x position (0-100%)
+      const y = Math.random() * 100 // Random y position (0-100%)
+      const size = Math.random() * 3 + 1 // Random size between 1-4px
+      
+      newParticles.push(
+        <motion.div
+          key={i}
+          className="absolute bg-slate-400/30 rounded-full"
+          style={{
+            width: size,
+            height: size,
+            left: `${x}%`,
+            top: `${y}%`,
+          }}
+          animate={{
+            x: [0, Math.random() * 50 - 25],
+            y: [0, Math.random() * 50 - 25],
+          }}
+          transition={{
+            duration: Math.random() * 3 + 2,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "linear"
+          }}
+        />
+      )
+    }
+
+    setParticles(newParticles)
+  }, [])
 
   return (
-    <Particles
-      className="absolute inset-0"
-      id="tsparticles"
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={options}
-    />
-  );
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/10 to-background/80" />
+    </div>
+  )
 }
